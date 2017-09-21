@@ -1,0 +1,58 @@
+/*========================================
+
+  grid
+
+========================================*/
+
+.m-grid{
+	$gutter: $font_size_base*2;
+	$list  : (
+		// class : width
+		"&.width-80"                         : 80%,
+		"&.width-75"                         : 75%,
+		"&.width-70"                         : 70%,
+		"&.width-66"                         : 66.66%,
+		"&.width-60"                         : 60%,
+		"&.width-50, &.column-2, .column-2>&": 50%,
+		"&.width-40"                         : 40%,
+		"&.width-33, &.column-3, .column-3>&": 33.33%,
+		"&.width-30"                         : 30%,
+		"&.width-25, &.column-4, .column-4>&": 25%,
+		"&.width-20, &.column-5, .column-5>&": 20%,
+	);
+	& {
+		display: flex;
+		flex-direction : row;
+		flex-wrap      : wrap;
+		justify-content: flex-start;
+		align-items    : stretch;
+		align-content  : center;
+		margin-right: -$gutter;
+
+		&.type-vCenter{
+			align-items: center;
+		}
+		@include mq_s() {
+			flex-direction : column;
+			margin-right: 0;
+		};
+	}
+	&__item{
+		margin: 0 $gutter $gutter 0;
+		@each $class, $width in $list {
+			#{$class} {
+				width: calc(#{$width} - #{$gutter});
+			}
+		}
+
+		@include mq_s() {
+			margin-bottom: $font_size_base;
+			&[class*="width"],
+			&[class*="column"],
+			[class*="column"] &{
+				width: 100%;
+				margin-right: 0;
+			}
+		};
+	}
+}

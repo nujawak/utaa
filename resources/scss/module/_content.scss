@@ -1,0 +1,18 @@
+/*========================================
+
+  content
+
+========================================*/
+
+.m-content{
+	width: 100%;
+	max-width: calc( #{$content_width} + #{$font_size_base*2} );
+	margin: {
+		left : auto;
+		right: auto;
+	}
+	padding: {
+		left : $font_size_base;
+		right: $font_size_base;
+	}
+}

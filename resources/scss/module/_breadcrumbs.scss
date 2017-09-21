@@ -1,0 +1,35 @@
+/*========================================
+
+  breadcrumbs
+
+========================================*/
+
+.m-breadcrumbs{
+	&__list{
+		display: flex;
+		flex-direction : row;
+		flex-wrap      : wrap;
+		justify-content: flex-start;
+		align-items    : stretch;
+		align-content  : center;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	&__item{
+		max-width: 10em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		& + &{
+			margin-left: 1em;
+			&:before{
+				content: '>';
+				margin-right: 1em;
+			}
+		}
+	}
+	a{
+		color: inherit;
+	}
+}

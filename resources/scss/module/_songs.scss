@@ -1,0 +1,174 @@
+/*========================================
+
+  songs
+
+========================================*/
+
+.m-songs{
+	$width: (
+		cover : 160px,
+		gutter: 1em
+	);
+	
+	&{
+		
+	}
+	&__list{
+		
+	}
+	&__item{
+		position: relative;
+		display: flex;
+		flex-direction : row;
+		flex-wrap      : nowrap;
+		justify-content: space-between;
+		align-items    : flex-start;
+		align-content  : center;
+		padding: 1em;
+		border: 5px solid transparent;
+		
+		@include mq_s() {
+			flex-direction : column;
+		};
+		
+		&[state="play"], &[state="pause"]{
+			
+			&:before{
+				content: 'now playing';
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 0.4em 1em;
+				letter-spacing: 0.05em;
+				color: #fff;
+			}
+		}
+		&[state="play"]{
+			border: 5px solid map-get($color_theme, 1);
+			&:before{
+				content: 'now playing';
+				background: map-get($color_theme, 1);
+			}
+		}
+		&[state="pause"]{
+			border: 5px solid map-get($color_theme, 3);
+			&:before{
+				content: 'pause';
+				background: map-get($color_theme, 3);
+			}
+		}
+	}
+	&__cover{
+		position: relative;
+		width: map-get($width, cover);
+		margin: 0;
+		font-size: 0;
+		
+		@include mq_s() {
+			width: 100%;
+		};
+		
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+	&__meta{
+		width: calc(100% - #{map-get($width, cover)} - #{map-get($width, gutter)});
+		
+		@include mq_s() {
+			width: 100%;
+		};
+
+		.title{
+			font-size: 1.6em;
+		}
+		.song{
+			
+		}
+		.leader{
+			font-size: 0.75em;
+			font-weight: normal;
+			&:before{
+				content: '/';
+				margin: 0 0.4em 0 0;
+			}
+			
+			@include mq_s() {
+				display: block;
+				&:before{
+					content: none;
+				}
+			};
+		}
+		.album{
+			font-style: italic;
+		}
+		.button{
+			position: relative;
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+			width: 1.2em;
+			height: 1.2em;
+			color: transparent;
+			background: map-get($color_theme, 1);
+			border: 2px solid map-get($color_theme, 1);
+			border-radius: 100%;
+			overflow: hidden;
+			cursor: pointer;
+			
+			[state="pause"] &{
+				background: map-get($color_theme, 3);
+				border: 2px solid map-get($color_theme, 3);
+			}
+			&:before {
+				@extend %before_after_base;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 0;
+				height: 0;
+				transform: translateX(1px);
+				border-style: solid;
+				border-width: 5px 0 5px 8.7px;
+				border-color: transparent transparent transparent #fff;
+				transition: 0.3s linear;
+				
+				[state="play"] &{
+					width: 10px;
+					height: 11px;
+					transform: none;
+					border-width: 0 3px 0 3px;
+					border-color: transparent #fff transparent #fff;
+				}
+			}
+		}
+	}
+	blockquote{
+		position: relative;
+		margin: 2em 2em 0;
+		font-size: 0.9em;
+		color: #777;
+		&:before,
+		&:after{
+			@extend %before_after_base;
+			font-size: 3em;
+			font-family: serif;
+			line-height: 1;
+			color: inherit;
+		}
+		&:before{
+			content: "“";
+			top: 0;
+			left: -0.8em;
+		}
+		&:after{
+			content: "”";
+			bottom: -0.5em;
+			right: -0.8em;
+		}
+	}
+}

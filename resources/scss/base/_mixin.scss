@@ -1,0 +1,44 @@
+/*========================================
+
+  mixins
+
+========================================*/
+
+/*  rem font-size with fallback
+---------------*/
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 10) * 1px;
+	font-size: $sizeValue * 1rem;
+}
+
+
+/*  縦横比固定のblock, iframe
+---------------*/
+@mixin fixed-aspect-ratio( $type, $width, $height, $child ){
+	position: relative;
+	width: 100%;
+	&:before{
+		content:"";
+		display: block;
+		padding-top: $height / $width * 100%;
+	}
+	#{$child}{
+		position: absolute;
+		top: 0;
+		left: 0;
+		@if 'iframe' == $type {
+			width: 100%;
+			height: 100%;
+		} @else {
+			bottom: 0;
+			right: 0;
+		}
+	}
+}
+
+/*  split background
+	@link https://mae.chab.in/archives/2269
+---------------*/
+@mixin split-bg( $degree: 90deg, $first_half: #000, $second_half: #fff ) {
+	background-image: linear-gradient(#{$degree}, #{$first_half} 50%, #{$second_half} 50%, #{$second_half});
+}

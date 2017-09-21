@@ -1,0 +1,42 @@
+/*========================================
+
+  settings
+
+========================================*/
+
+.m-settings{
+	&{
+		margin: 0 0 1.5em;
+	}
+	&__list{
+		@extend .m-grid;
+		
+		& + &{
+			margin-top: 1em;
+		}
+	}
+	&__item{
+		@extend .m-grid__item;
+		margin: 0 1em 0 0;
+		
+		&.type-label{
+			font-size: 0.8em;
+			color: map-get($color_theme, 2);
+			border-bottom: 1px solid map-get($color_theme, 2);
+			&:after{
+				content: ':';
+			}
+		}
+		&.type-item{
+			padding: 0.6em 0.8em;
+			font-size: 0.8em;
+			line-height: 1;
+			cursor: pointer;
+		}
+		&.type-active{
+			color: #fff;
+			background: map-get($color_theme, 2);
+			border-radius: 4px;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+/*========================================
+
+  extend
+
+========================================*/
+
+%before_after_base{
+	content: '';
+	display: block;
+	position: absolute;
+}

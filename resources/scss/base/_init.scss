@@ -1,0 +1,36 @@
+/*========================================
+
+  init
+
+========================================*/
+
+/*  vars
+---------------*/
+
+// font
+$font_family_base: futura, sans-serif;
+$font_family_serif: serif;
+$font_size_base  : 15px;
+$line_height_base: 1.75;
+
+// color
+// @link http://qiita.com/manabuyasuda/items/ae42db5604cd723fb3cd
+$colors: (
+	text: #333,
+	link: royalblue,
+	bg: #fff,
+	);
+$color_text_base : #333;
+$color_link_base : royalblue;
+$color_bg_base   : #f2ede9;
+$color_theme_blue: #0b4e9c;
+$color_theme_orage: #C58465;
+
+$color_theme: (
+	1: #0b4e9c,
+	2: #C58465,
+	3: #E8BE56,
+	);
+
+// 
+$content_width   : 1000px;

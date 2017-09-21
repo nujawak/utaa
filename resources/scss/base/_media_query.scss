@@ -1,0 +1,39 @@
+/*========================================
+
+  media query
+
+========================================*/
+
+$breakpoint_small : $font_size_base * 40;
+$breakpoint_medium: $breakpoint_small * 1.5;
+$breakpoint_large : $breakpoint_medium * 1.5;
+
+@mixin mq_s() {
+	@media (max-width: #{$breakpoint_small}) {
+		@content;
+	}
+}
+
+@mixin mq_m() {
+	@media (max-width: #{$breakpoint_medium}) {
+		@content;
+	}
+}
+
+@mixin mq_l() {
+	@media (min-width: #{$breakpoint_medium}) {
+		@content;
+	}
+}
+
+@mixin mq_xl() {
+	@media (min-width: #{$breakpoint_large}) {
+		@content;
+	}
+}
+
+@mixin mq($max-width) {
+	@media (max-width: #{$max-width}px) {
+		@content;
+	}
+}

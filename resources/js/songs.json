@@ -1,0 +1,129 @@
+[
+	{
+		"leader"   : "The El Dorados",
+		"title"    : "Boom Diddle Boom",
+		"year"     : "1957",
+		"album"    : "Bim Bam Boom",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Boom Diddle Boom",
+		"youtubeID": "91l2bKR9Grk",
+		"quotation": "ドゥ・ワップという音楽です。これも大流行しましたね。黒人たちのコーラス・グループによるポップス。黒人以外では何故かイタリア系移民によるグループが多かったということですが、えー、若い人は知らないと思いますが、昔、シャネルズという人たちがいまして、過去二回ほどにわたって......えーと、この話はやめとこう（笑）。黒人によるコーラスですけど、まだ「ソウル」って感じは全然入っていませんね。コード進行もスタンダード的で、音楽構造的にはホワイティなものです。"
+	},
+	{
+		"leader"   : "Nelson Riddle",
+		"title"    : "Let Yourself Go",
+		"year"     : "1957",
+		"album"    : "",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Let Yourself Go",
+		"youtubeID": "pQ9vKSFRFjo"
+	},
+	{
+		"leader"   : "Nat King Cole",
+		"title"    : "Cachito",
+		"album"    : "",
+		"year"     : "1958",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Cachito",
+		"youtubeID": "NptOC-x0Cls"
+	},
+	{
+		"leader"   : "Andy Williams",
+		"title"    : "Autumn Leaves",
+		"album"    : "",
+		"year"     : "1955",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Autumn Leaves",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "Elvis Presley",
+		"title"    : "Hound Dog",
+		"album"    : "",
+		"year"     : "1956",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Hound Dog",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "John Lee Hooker",
+		"title"    : "Walkin' the Boogle",
+		"album"    : "",
+		"year"     : "1960",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Walkin' the Boogle",
+		"youtubeID": "cbezj9W2dXQ"
+	},
+	{
+		"leader"   : "Elvis Presley",
+		"title"    : "Jailhouse Rock",
+		"album"    : "",
+		"year"     : "1957",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Jailhouse Rock",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "MJQ",
+		"title"    : "Django",
+		"album"    : "",
+		"year"     : "1955",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Django",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "The Quintet",
+		"title"    : "Salt Peanuts",
+		"album"    : "Jazz At Massey Hall",
+		"year"     : "1953",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Salt Peanuts",
+		"youtubeID": "molq2x8E7V4"
+	},
+	{
+		"leader"   : "Brown-Roach Quintet",
+		"title"    : "Powell's Prances",
+		"album"    : "",
+		"year"     : "1956",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Powell's Prances",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "Frank Sinatra",
+		"title"    : "My Funny Valentine",
+		"album"    : "Swing Easy! And Songs For Young Lovers",
+		"year"     : "1955",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=My Funny Valentine",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "Miles Davis",
+		"title"    : "My Funny Valentine",
+		"album"    : "Cookin",
+		"year"     : "1956",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=My Funny Valentine",
+		"youtubeID": ""
+	},
+	{
+		"leader"   : "Miles Davis",
+		"title"    : "Airegin",
+		"album"    : "Cookin",
+		"year"     : "1956",
+		"chapter"  : "4",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Airegin",
+		"youtubeID": "-Hpczb5quhk"
+	},
+	{
+		"leader"   : "The Quintet",
+		"title"    : "Salt Peanuts",
+		"album"    : "Jazz At Massey Hall",
+		"year"     : "1953",
+		"chapter"  : "5",
+		"src"      : "https://dummyimage.com/150x150/efefef/212121&text=Salt Peanuts",
+		"youtubeID": "molq2x8E7V4"
+	}
+]
