@@ -129,8 +129,8 @@
 	 * クリックイベントで実行
 	 */
 	app.music.methods.start = function() {
-		app.music.methods.createYoutube(event.currentTarget.getAttribute('youtubeID'));
 		app.music.methods.setNowplaying(event.currentTarget.getAttribute('index'), 'play');
+		app.music.methods.createYoutube(event.currentTarget.getAttribute('youtubeID'));
 	}
 	
 	
@@ -162,7 +162,8 @@
 	 */
 	app.music.methods.stop = function() {
 		document.getElementById('js-frame').innerHTML = '';
-		player.destroy();
+		if ( 'object' === typeof player && 'destroy' in player )
+			player.destroy();
 		player = {};
 		app.music.methods.setNowplaying(null, 'stop');
 	}
@@ -202,7 +203,8 @@
 			return item;
 		});
 		// ターゲットにセット
-		app.Vue.data.items[index]['state'] = state;
+		if ( null != index )
+			app.Vue.data.items[index]['state'] = state;
 		return;
 	}
 	
@@ -214,6 +216,11 @@
 	 * @link https://developers.google.com/youtube/iframe_api_reference
 	 */
 	app.music.methods.createYoutube = function( videoId ) {
+		if ( "" == videoId ){
+			app.music.methods.stop();
+			return;
+		}
+		
 		// frame を初期化
 		document.getElementById('js-frame').innerHTML = '';
 		if ( 'object' === typeof player && 'destroy' in player )
@@ -228,6 +235,7 @@
 			},
 			events: {
 				onStateChange: app.music.methods.onYoutubeStateChange,
+				onError      : app.music.methods.onYoutubeError,
 			}
 		};
 		player = new YT.Player('js-frame', params);
@@ -251,6 +259,13 @@
 				app.music.methods.stop();
 			}
 		}
+	}
+	
+	
+	app.music.methods.onYoutubeError = function( event ){
+		console.log('onYoutubeError');
+		console.log(event);
+		app.music.methods.stop();
 	}
 	
 	
