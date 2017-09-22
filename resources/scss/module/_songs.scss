@@ -152,6 +152,7 @@
 		margin: 2em 2em 0;
 		font-size: 0.9em;
 		color: #777;
+		text-align: justify;
 		&:before,
 		&:after{
 			@extend %before_after_base;
