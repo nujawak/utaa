@@ -255,8 +255,8 @@
 		if ( 0 == event.data) { // end video
 			var nowplaying = app.music.methods.getNowplaying();
 			var nextItem   = app.Vue.data.items[nowplaying.index + 1];
-
-			if ( app.music.autoplay && undefined != nextItem ) {
+			
+			if ( app.music.autoplay && undefined != nextItem  && "" != nextItem.youtubeID ) {
 				app.music.methods.createYoutube(nextItem.youtubeID);
 				app.music.methods.setNowplaying(nowplaying.index + 1, 'play');
 			} else {
