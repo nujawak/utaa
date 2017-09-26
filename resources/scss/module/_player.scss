@@ -12,10 +12,14 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		opacity: 0.1;
 	}
 	&__frame{
 		width: 100%;
 		height: 100%;
+		opacity: 0;
+		transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+		&[state="play"]{
+			opacity: 0.1;
+		}
 	}
 }

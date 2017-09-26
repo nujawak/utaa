@@ -26,6 +26,7 @@
 		align-content  : center;
 		padding: 1em;
 		border: 5px solid transparent;
+		transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 		
 		@include mq_s() {
 			flex-direction : column;
@@ -41,6 +42,7 @@
 				padding: 0.4em 1em;
 				letter-spacing: 0.05em;
 				color: #fff;
+				transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 			}
 		}
 		&[state="play"]{
@@ -117,6 +119,7 @@
 			border-radius: 100%;
 			overflow: hidden;
 			cursor: pointer;
+			transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 			
 			[state="pause"] &{
 				background: map-get($color_theme, 3);
@@ -135,7 +138,7 @@
 				border-style: solid;
 				border-width: 5px 0 5px 8.7px;
 				border-color: transparent transparent transparent #fff;
-				transition: 0.3s linear;
+				transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 				
 				[state="play"] &{
 					width: 10px;
