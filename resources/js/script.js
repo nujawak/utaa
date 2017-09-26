@@ -197,14 +197,18 @@
 	 * @param {string}  state [play/pause/stop]
 	 */
 	app.music.methods.setNowplaying = function( index, state ) {
+		var frame = document.getElementById('js-frame');
 		// 他をリセット
+		frame.setAttribute('state', 'stop');
 		app.Vue.data.items.map(function(item) {
 			item.state = 'stop';
 			return item;
 		});
 		// ターゲットにセット
-		if ( null != index )
+		if ( null != index ){
+			frame.setAttribute('state', state);
 			app.Vue.data.items[index]['state'] = state;
+		}
 		return;
 	}
 	
