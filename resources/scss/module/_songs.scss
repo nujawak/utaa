@@ -17,45 +17,46 @@
 		
 	}
 	&__item{
-		position: relative;
-		display: flex;
-		flex-direction : row;
-		flex-wrap      : nowrap;
-		justify-content: space-between;
-		align-items    : flex-start;
-		align-content  : center;
-		padding: 1em;
-		border: 5px solid transparent;
-		transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-		
-		@include mq_s() {
-			flex-direction : column;
-		};
-		
-		&[state="play"], &[state="pause"]{
+		& {
+			position: relative;
+			display: flex;
+			flex-direction : row;
+			flex-wrap      : nowrap;
+			justify-content: space-between;
+			align-items    : flex-start;
+			align-content  : center;
+			padding: 1em;
+			border: 5px solid transparent;
+			transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 			
-			&:before{
-				content: 'now playing';
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: 0.4em 1em;
-				letter-spacing: 0.05em;
-				color: #fff;
-				transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-			}
+			@include mq_s() {
+				flex-direction : column;
+			};
+		}
+		&:before{
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 0.4em 1em;
+			letter-spacing: 0.05em;
+			color: transparent;
+			background: transparent;
+			transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 		}
 		&[state="play"]{
-			border: 5px solid map-get($color_theme, 1);
+			border-color: map-get($color_theme, 1);
 			&:before{
 				content: 'now playing';
+				color: #fff;
 				background: map-get($color_theme, 1);
 			}
 		}
 		&[state="pause"]{
-			border: 5px solid map-get($color_theme, 3);
+			border-color: map-get($color_theme, 3);
 			&:before{
 				content: 'pause';
+				color: #fff;
 				background: map-get($color_theme, 3);
 			}
 		}
