@@ -27,7 +27,9 @@
 			// data bind
 			songs              = JSON.parse(request.responseText);
 			app.Vue.data.items = songs.map(function(item) {
-				item.state = 'stop';
+				var discogsSlug = item.discogsID.replace('r', 'release/').replace('m', 'master/');
+				item.discogsURL = 'https://www.discogs.com/' + discogsSlug;
+				item.state      = 'stop';
 				return item;
 			});
 		};

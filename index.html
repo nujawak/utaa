@@ -50,6 +50,11 @@
 							<span class="leader">{{item.leader}}</span>
 						</h3>
 						<p class="album">{{item.album}}, {{item.year}}</p>
+						<ul class="m-songs__links m-grid">
+							<li>Links:</li>
+							<li><a target="_blank" v-bind:href="item.discogsURL">discogs</a></li>
+							<li><a target="_blank" v-bind:href="'https://www.youtube.com/watch?v=' + item.youtubeID">youtube</a></li>
+						</ul>
 						<blockquote>
 							<p v-html="item.quotation"></p>
 							<p class="u-text-right u-text-italic"><small>東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 第{{item.chapter}}章</small></p>

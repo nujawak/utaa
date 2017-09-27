@@ -105,6 +105,7 @@
 			};
 		}
 		.album{
+			font-size: 1.1em;
 			font-style: italic;
 		}
 		.button{
@@ -149,6 +150,13 @@
 					border-color: transparent #fff transparent #fff;
 				}
 			}
+		}
+	}
+	&__links{
+		list-style: none;
+		color: #777;
+		> * + *{
+			margin-left: 0.6em;
 		}
 	}
 	blockquote{
