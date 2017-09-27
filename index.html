@@ -41,7 +41,7 @@
 			<div class="m-songs__list">
 				<div class="m-songs__item" v-for="(item, index) in items" v-bind:id="item.youtubeID" v-bind:index="index" v-bind:state="item.state">
 					<figure class="m-songs__cover">
-						<img v-bind:src="item.src" v-bind:alt="item.title">
+						<img v-bind:src="'./resources/img/' + item.discogsID + '.jpg'" v-bind:alt="item.title">
 					</figure>
 					<div class="m-songs__meta">
 						<h3 class="title u-mb-0">
