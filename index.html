@@ -22,16 +22,16 @@
 	<div class="m-settings">
 		<div class="m-settings__inner m-content">
 			<dl class="m-settings__list type-sort">
-				<dt class="m-settings__item type-label">並び順</dt>
-				<dd class="m-settings__item type-item type-active" v-on:click="onClickSort('page', $event)">ページ</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort('year', $event)">年</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort('title', $event)">曲名</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort('leader', $event)">リーダー名</dd>
+				<dt class="m-settings__item type-label">ソート</dt>
+				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="page">ページ</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="year">年</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="title">曲名</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="leader">リーダー名</dd>
 			</dl>
 			<dl class="m-settings__list type-autoplay">
 				<dt class="m-settings__item type-label">連続再生</dt>
-				<dd class="m-settings__item type-item" isAutoplay="true" v-on:click="toggleAutoplay">on</dd>
-				<dd class="m-settings__item type-item" isAutoplay="false" v-on:click="toggleAutoplay">off</dd>
+				<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="true">on</dd>
+				<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="false">off</dd>
 			</dl>
 		</div>
 	</div>

@@ -11,7 +11,9 @@
 	app.Vue.data.items = [];
 	app.music.methods  = {};
 	app.music.autoplay = true;
+	app.music.sortby   = 'page';
 	document.querySelector('[isAutoplay="true"]').classList.add('type-active');
+	document.querySelector('[sortby="' + app.music.sortby + '"]').classList.add('type-active');
 	
 	
 	/**
@@ -59,12 +61,13 @@
 	
 	/**
 	 * ソートボタンのクリックイベント
-	 * @param  {string} sortby ソートしたいキー
-	 * @param  {object} event
 	 * 
 	 * @link https://jp.vuejs.org/v2/guide/events.html
 	 */
-	app.Vue.methods.onClickSort = function ( sortby, event ){
+	app.Vue.methods.onClickSort = function (){
+		// update
+		app.music.sortby = event.currentTarget.getAttribute('sortby');
+		
 		// 他をリセット
 		var buttons = document.querySelectorAll('.type-sort .type-active');
 		Object.keys(buttons).forEach(function (key) {
@@ -73,7 +76,7 @@
 		// ターゲットにセット
 		event.currentTarget.classList.add('type-active');
 		
-		switch (sortby) {
+		switch (app.music.sortby) {
 			case 'year':
 				app.Vue.methods.sort(app.Vue.data.items, 'year');
 				break;
