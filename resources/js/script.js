@@ -28,10 +28,11 @@
 		request.onload = function() {
 			// data bind
 			songs              = JSON.parse(request.responseText);
-			app.Vue.data.items = songs.map(function(item) {
+			app.Vue.data.items = songs.map(function(item, index) {
 				var discogsSlug = item.discogsID.replace('r', 'release/').replace('m', 'master/');
 				item.discogsURL = 'https://www.discogs.com/' + discogsSlug;
 				item.state      = 'stop';
+				item.page       = index;
 				return item;
 			});
 		};
@@ -76,20 +77,7 @@
 		// ターゲットにセット
 		event.currentTarget.classList.add('type-active');
 		
-		switch (app.music.sortby) {
-			case 'year':
-				app.Vue.methods.sort(app.Vue.data.items, 'year');
-				break;
-			case 'title':
-				app.Vue.methods.sort(app.Vue.data.items, 'title');
-				break;
-			case 'leader':
-				app.Vue.methods.sort(app.Vue.data.items, 'leader');
-				break;
-			default:
-				app.Vue.data.items = songs;
-				break;
-		}
+		app.Vue.methods.sort(app.Vue.data.items, app.music.sortby);
 	}
 	
 	
