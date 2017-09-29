@@ -12,8 +12,10 @@
 	app.music.methods  = {};
 	app.music.autoplay = true;
 	app.music.sortby   = 'page';
+	app.music.filterby = 'all';
 	document.querySelector('[isAutoplay="true"]').classList.add('type-active');
 	document.querySelector('[sortby="' + app.music.sortby + '"]').classList.add('type-active');
+	document.querySelector('[filterby="' + app.music.filterby + '"]').classList.add('type-active');
 	
 	
 	/**
@@ -89,6 +91,28 @@
 			default:
 				app.Vue.data.items = songs;
 				break;
+		}
+	}
+	
+	
+	app.Vue.methods.onClickFilter = function(){
+		// update
+		app.music.filterby = event.currentTarget.getAttribute('filterby');
+		
+		// 他をリセット
+		var buttons = document.querySelectorAll('.type-filter .type-active');
+		Object.keys(buttons).forEach(function (key) {
+			buttons[key].classList.remove('type-active');
+		}, buttons);
+		// ターゲットにセット
+		event.currentTarget.classList.add('type-active');
+		
+		if ( 'all' == app.music.filterby ) {
+			app.Vue.data.items = songs;
+		} else {
+			app.Vue.data.items = songs.filter(function(item){
+				return ( app.music.filterby == item.chapter );
+			});
 		}
 	}
 	

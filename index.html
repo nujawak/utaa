@@ -33,6 +33,21 @@
 				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="title">曲名</dd>
 				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="leader">リーダー名</dd>
 			</dl>
+			<dl class="m-settings__list type-filter">
+				<dt class="m-settings__item type-label">フィルター</dt>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="all">全て</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="1">1章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="2">2章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="3">3章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="4">4章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="5">5章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="6">6章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="7">7章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="8">8章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="9">9章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="10">10章</dd>
+				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="11">11章</dd>
+			</dl>
 			<dl class="m-settings__list type-autoplay">
 				<dt class="m-settings__item type-label">連続再生</dt>
 				<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="true">on</dd>
