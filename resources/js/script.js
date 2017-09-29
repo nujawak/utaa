@@ -10,9 +10,15 @@
 	app.Vue.data       = {};
 	app.Vue.data.items = [];
 	app.music.methods  = {};
-	app.music.autoplay = true;
-	app.music.sortby   = 'page';
-	app.music.filterby = 'all';
+	
+	// defaults
+	app.music.autoplay   = true;
+	app.music.sortby     = 'songID';
+	app.music.filterby   = 'all';
+	app.music.nowplaying = {
+		songID: null,
+		state : 'stop',
+	};
 	document.querySelector('[isAutoplay="true"]').classList.add('type-active');
 	document.querySelector('[sortby="' + app.music.sortby + '"]').classList.add('type-active');
 	document.querySelector('[filterby="' + app.music.filterby + '"]').classList.add('type-active');
@@ -34,7 +40,7 @@
 				var discogsSlug = item.discogsID.replace('r', 'release/').replace('m', 'master/');
 				item.discogsURL = 'https://www.discogs.com/' + discogsSlug;
 				item.state      = 'stop';
-				item.page       = index;
+				item.songID     = index;
 				return item;
 			});
 		};
@@ -83,6 +89,11 @@
 	}
 	
 	
+	/**
+	 * フィルターボタンのクリックイベント
+	 * 
+	 * @link https://jp.vuejs.org/v2/guide/events.html
+	 */
 	app.Vue.methods.onClickFilter = function(){
 		// update
 		app.music.filterby = event.currentTarget.getAttribute('filterby');
@@ -102,6 +113,18 @@
 				return ( app.music.filterby == item.chapter );
 			});
 		}
+		
+		// app.music.nowplaying の状態を反映
+		app.Vue.data.items.map(function(item) {
+			if ( item.songID == app.music.nowplaying.songID ){
+				item.state = app.music.nowplaying.state
+			} else {
+				item.state = 'stop';
+			}
+			return item;
+		})
+		// フィルターした後にソートも適用
+		app.Vue.methods.sort(app.Vue.data.items, app.music.sortby);
 	}
 	
 	
@@ -126,14 +149,18 @@
 	 * 
 	 */
 	app.Vue.methods.onClickPlay = function() {
-		var nowplaying = app.music.methods.getNowplaying();
-		var thisIndex  = event.currentTarget.getAttribute('index');
+		var thisSongID  = event.currentTarget.getAttribute('songID');
 		
-		if ( thisIndex == nowplaying.index ) {
-			if ( 'play' == nowplaying.state ) {
-				app.music.methods.pause();
-			} else if ( 'pause' == nowplaying.state ) {
-				app.music.methods.reStart();
+		if ( thisSongID == app.music.nowplaying.songID ) {
+			switch ( app.music.nowplaying.state ){
+				case 'play':
+					app.music.methods.pause();
+					break;
+				case 'pause':
+					app.music.methods.reStart();
+					break;
+				default:
+					break;
 			}
 		} else {
 			app.music.methods.start();
@@ -146,7 +173,7 @@
 	 * クリックイベントで実行
 	 */
 	app.music.methods.start = function() {
-		app.music.methods.setNowplaying(event.currentTarget.getAttribute('index'), 'play');
+		app.music.methods.setNowplaying(event.currentTarget.getAttribute('songID'), 'play');
 		app.music.methods.createYoutube(event.currentTarget.getAttribute('youtubeID'));
 	}
 	
@@ -157,8 +184,7 @@
 	 */
 	app.music.methods.pause = function() {
 		player.pauseVideo();
-		var nowplaying = app.music.methods.getNowplaying();
-		app.music.methods.setNowplaying(nowplaying.index, 'pause');
+		app.music.methods.setNowplaying(app.music.nowplaying.songID, 'pause');
 	}
 	
 	
@@ -168,8 +194,7 @@
 	 */
 	app.music.methods.reStart = function() {
 		player.playVideo();
-		var nowplaying = app.music.methods.getNowplaying();
-		app.music.methods.setNowplaying(nowplaying.index, 'play');
+		app.music.methods.setNowplaying(app.music.nowplaying.songID, 'play');
 	}
 	
 	
@@ -191,42 +216,33 @@
 	 * @return {object}
 	 */
 	app.music.methods.getNowplaying = function() {
-		// default
-		var nowplaying = {
-			index: null,
-			state: 'stop',
-		};
-		// stop 以外の状態を検索
-		var states = app.Vue.data.items.map(function(elem){
-			return ( 'stop' != elem.state );
-		});
-		if ( -1 !== states.indexOf(true) ) {
-			nowplaying.index = states.indexOf(true);
-			nowplaying.state = app.Vue.data.items[nowplaying.index]['state'];
-		}
-		return nowplaying;
+		return app.music.nowplaying;
 	}
 	
 	
 	/**
 	 * 再生中の曲の情報を設定
-	 * @param {integer} index [再生中の曲の順番]
-	 * @param {string}  state [play/pause/stop]
+	 * @param {integer} songID [再生中の曲の順番]
+	 * @param {string}  state  [play/pause/stop]
 	 */
-	app.music.methods.setNowplaying = function( index, state ) {
-		var frame = document.getElementById('js-frame');
-		// 他をリセット
-		frame.setAttribute('state', 'stop');
+	app.music.methods.setNowplaying = function( songID, state ) {
+		// music 側の大本を更新
+		app.music.nowplaying.songID = songID;
+		app.music.nowplaying.state  = state;
+		
+		// vue も更新して表示に反映
 		app.Vue.data.items.map(function(item) {
-			item.state = 'stop';
+			if ( item.songID == app.music.nowplaying.songID ) {
+				// ターゲットにセット
+				item.state = state;
+			} else {
+				// 他をリセット
+				item.state = 'stop';
+			}
 			return item;
 		});
-		// ターゲットにセット
-		if ( null != index ){
-			frame.setAttribute('state', state);
-			app.Vue.data.items[index]['state'] = state;
-		}
-		return;
+		// youtube frame の状態も更新
+		document.getElementById('js-frame').setAttribute('state', state);
 	}
 	
 	
@@ -269,13 +285,17 @@
 	 * @link https://developers.google.com/youtube/iframe_api_reference#Events
 	 */
 	app.music.methods.onYoutubeStateChange = function( event ){
-		if ( 0 == event.data) { // end video
-			var nowplaying = app.music.methods.getNowplaying();
-			var nextItem   = app.Vue.data.items[nowplaying.index + 1];
+		if ( 0 == event.data ) { // end video
+			var nextItem;
+			var appears = app.Vue.data.items.map(function(item) {
+				return ( item.songID == app.music.nowplaying.songID );
+			});
+			if ( -1 != appears.indexOf(true) )
+				nextItem = app.Vue.data.items[appears.indexOf(true) + 1];
 			
 			if ( app.music.autoplay && undefined != nextItem  && "" != nextItem.youtubeID ) {
 				app.music.methods.createYoutube(nextItem.youtubeID);
-				app.music.methods.setNowplaying(nowplaying.index + 1, 'play');
+				app.music.methods.setNowplaying(nextItem.songID, 'play');
 			} else {
 				app.music.methods.stop();
 			}
@@ -284,9 +304,10 @@
 	
 	
 	app.music.methods.onYoutubeError = function( event ){
+		app.music.methods.stop();
 		console.log('onYoutubeError');
 		console.log(event);
-		app.music.methods.stop();
+		alert('Youtube の設定により再生に失敗しました。 Error code: ' + event.data);
 	}
 	
 	
