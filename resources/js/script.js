@@ -222,7 +222,7 @@
 	
 	/**
 	 * 再生中の曲の情報を設定
-	 * @param {integer} songID [再生中の曲の順番]
+	 * @param {integer} songID [再生中の曲のID]
 	 * @param {string}  state  [play/pause/stop]
 	 */
 	app.music.methods.setNowplaying = function( songID, state ) {
