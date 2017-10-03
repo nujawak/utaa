@@ -59,6 +59,34 @@
 						</dl>
 					</div>
 				</div>
+				<div class="m-about">
+					<div class="m-about__inner">
+						<p class="m-about__open" v-on:click="toggleAboutContent('open')">このサイトについて &raquo;</p>
+						<div id="js-about-content" class="m-about__content">
+							<p class="u-text-bold">このサイトについて</p>
+							<p>このサイトは、菊地 成孔, 大谷 能生著「東京大学のアルバート・アイラー―東大ジャズ講義録・歴史編」の副読サイトとなることを目指して作成しました。</p>
+							<p><a href="https://nujawak.online/about/">nujawak</a> が個人の趣味で作成したもので、公式なものではありません。</p>
+							<p class="u-text-bold">機能</p>
+							<p>青の再生ボタンを押すと楽曲を聴くことができます。楽曲はソート、フィルターが利用可能です。連続再生をオンにすれば、表示されている楽曲を上から順に連続で再生します。</p>
+							<p>ただし、連続再生は、デスクトップ環境のみの機能です。モバイル環境では動作しません。詳細は <a href="https://developers.google.com/youtube/iframe_api_reference#Mobile_considerations">YouTube のドキュメント</a>及び <a href="https://developer.apple.com/safari/resources/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/AudioandVideoTagBasics/AudioandVideoTagBasics.html">Apple のドキュメント</a>をご覧ください。</p>
+							<p class="u-text-bold">音源、楽曲情報</p>
+							<p>音源には <a href="https://www.youtube.com/">YouTube</a> を利用しました。</p>
+							<p>タイトル名／アルバム名／アーティスト名については、本の記載をもとに、 <a href="https://www.discogs.com/">Discogs</a> のマスター情報を参照しました。ただし、年については本の記載にならっています。 Discogs の情報はアルバムの発売年で、楽曲の発表年ではないためです。</p>
+							<p class="u-text-bold">作成意図、目的</p>
+							<p>私はこの本がとても好きで、下巻にあたるキーワード編と合わせて4度、5度は読み返しています。ただ、読み返すたびに「なぜ音がでない！音が聴きたい！」と強く感じます。当たり前なんですけどね、本なので。調べながら読み進めてもよいのですが、本文が面白すぎるので読書の手を止めたくない。楽曲が多いので調べるにも腰が重いのも正直なところ。</p>
+							<p>また購入もしたいけど、年代の古い曲は収録されているアルバムが多数あって何を買えば良いのか迷うこともしばしば。</p>
+							<p>数度目の読書にして聴きたい欲がピークに達し、使用楽曲をまとめてみよう！と思い立ちました。</p>
+							<p>このサイトが「東京大学のアルバート・アイラー」を読み進める一助になれば幸いです。ひいては jazz を含めた沢山の音楽に触れるきっかけになれたら嬉しいです。</p>
+							<p>余談ですが本の中で何度か紹介される、野田努著「ブラック・マシン・ミュージック」も同様に好きです。</p>
+							<p class="u-text-bold">謝辞</p>
+							<p>サイトの作成には <a href="https://vuejs.org/">Vue.js</a>, <a href="https://developers.google.com/youtube/iframe_api_reference">YouTube IFrame player API</a>, <a href="https://www.discogs.com/developers/">Discogs API</a> を利用しました。</p>
+							<p class="u-text-bold">連絡先</p>
+							<p>ご意見・ご要望・不具合など、ご連絡は <a href="mailto:nujawak.online@gmail.com">nujawak.online@gmail.com</a> までメールをお願いします。</p>
+							<p class="u-text-right">2017年10月</p>
+							<p class="m-about__close" v-on:click="toggleAboutContent('close')">&laquo; 閉じる</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div><!-- m-nav -->
 		

@@ -147,6 +147,24 @@
 	
 	
 	/**
+	 * このサイトについて の表示切り替え
+	 * 
+	 */
+	app.Vue.methods.toggleAboutContent = function( trigger ) {
+		var target = document.getElementById('js-about-content');
+		
+		switch ( trigger ){
+			case 'open':
+				target.classList.add('type-open');
+				break;
+			default:
+				target.classList.remove('type-open');
+				break;
+		}
+	}
+	
+	
+	/**
 	 * プレイボタンのクリックイベント
 	 * 
 	 */
