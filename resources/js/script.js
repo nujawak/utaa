@@ -2,7 +2,7 @@
 	var app = {
 		Vue  : {},
 		music: {},
-	}, songs = [], player = {};
+	};
 	
 	// 
 	app.Vue.el         = '#js-vue';
@@ -10,6 +10,8 @@
 	app.Vue.data       = {};
 	app.Vue.data.items = [];
 	app.music.methods  = {};
+	app.music._songs   = [];
+	app.music.player   = {};
 	
 	// defaults
 	app.music.autoplay   = true;
@@ -35,8 +37,8 @@
 		var request    = new XMLHttpRequest();
 		request.onload = function() {
 			// data bind
-			songs              = JSON.parse(request.responseText);
-			app.Vue.data.items = songs.map(function(item, index) {
+			app.music._songs   = JSON.parse(request.responseText);
+			app.Vue.data.items = app.music._songs.map(function(item, index) {
 				var discogsSlug = item.discogsID.replace('r', 'release/').replace('m', 'master/');
 				item.discogsURL = 'https://www.discogs.com/' + discogsSlug;
 				item.state      = 'stop';
@@ -107,9 +109,9 @@
 		event.currentTarget.classList.add('type-active');
 		
 		if ( 'all' == app.music.filterby ) {
-			app.Vue.data.items = songs;
+			app.Vue.data.items = app.music._songs;
 		} else {
-			app.Vue.data.items = songs.filter(function(item){
+			app.Vue.data.items = app.music._songs.filter(function(item){
 				return ( app.music.filterby == item.chapter );
 			});
 		}
@@ -183,7 +185,7 @@
 	 * 
 	 */
 	app.music.methods.pause = function() {
-		player.pauseVideo();
+		app.music.player.pauseVideo();
 		app.music.methods.setNowplaying(app.music.nowplaying.songID, 'pause');
 	}
 	
@@ -193,7 +195,7 @@
 	 * 
 	 */
 	app.music.methods.reStart = function() {
-		player.playVideo();
+		app.music.player.playVideo();
 		app.music.methods.setNowplaying(app.music.nowplaying.songID, 'play');
 	}
 	
@@ -204,9 +206,9 @@
 	 */
 	app.music.methods.stop = function() {
 		document.getElementById('js-frame').innerHTML = '';
-		if ( 'object' === typeof player && 'destroy' in player )
-			player.destroy();
-		player = {};
+		if ( 'object' === typeof app.music.player && 'destroy' in app.music.player )
+			app.music.player.destroy();
+		app.music.player = {};
 		app.music.methods.setNowplaying(null, 'stop');
 	}
 	
@@ -260,9 +262,9 @@
 		
 		// frame を初期化
 		document.getElementById('js-frame').innerHTML = '';
-		if ( 'object' === typeof player && 'destroy' in player )
-			player.destroy();
-		player = {};
+		if ( 'object' === typeof app.music.player && 'destroy' in app.music.player )
+			app.music.player.destroy();
+		app.music.player = {};
 		 
 		// create youtube frame
 		var params = {
@@ -275,7 +277,7 @@
 				onError      : app.music.methods.onYoutubeError,
 			}
 		};
-		player = new YT.Player('js-frame', params);
+		app.music.player = new YT.Player('js-frame', params);
 	}
 	
 	
