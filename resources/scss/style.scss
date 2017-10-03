@@ -10,6 +10,9 @@
 @import "base/_media_query";
 @import "base/_base";
 
+// layout
+@import "layout/_home";
+
 // module
 @import "module/_article";
 @import "module/_content";
@@ -20,6 +23,7 @@
 // @import "module/_breadcrumbs";
 // @import "module/_button";
 // @import "module/_heading";
+@import "module/_nav";
 @import "module/_title";
 @import "module/_songs";
 @import "module/_settings";

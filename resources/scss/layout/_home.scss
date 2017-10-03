@@ -1,0 +1,31 @@
+/*========================================
+
+  home
+
+========================================*/
+
+.l-home {
+	& {
+		display: flex;
+		flex-direction : row;
+		flex-wrap      : nowrap;
+		justify-content: space-around;
+		align-items    : stretch;
+		align-content  : center;
+	}
+	&__nav {
+		width: 20%
+	}
+	&__songs {
+		width: 80%
+	}
+	&__player {
+		position: fixed;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh
+	}
+}
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<title>東京大学のアルバート・アイラー 使用音源一覧</title>
+	<title>東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 使用楽曲一覧</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
@@ -9,7 +9,7 @@
 	<meta name="Description" content="" />
 	<meta name="keywords" content="">
 	<meta property="og:image" content="" />
-	<meta property="og:site_name" content="東京大学のアルバート・アイラー 使用音源一覧" />
+	<meta property="og:site_name" content="東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 使用楽曲一覧" />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="ja_JP" />
 	<link rel="shortcut icon" href="">
@@ -19,75 +19,83 @@
 <body>
 
 <div id="js-vue">
-	<div class="m-title">
-		<div class="m-title__inner m-content">
-			<h1 class="m-title__main">東京大学のアルバート・アイラー 使用音源一覧</h1>
-		</div>
-	</div>
-	<div class="m-settings">
-		<div class="m-settings__inner m-content">
-			<dl class="m-settings__list type-sort">
-				<dt class="m-settings__item type-label">ソート</dt>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="songID">ページ</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="year">年</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="title">曲名</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="leader">リーダー名</dd>
-			</dl>
-			<dl class="m-settings__list type-filter">
-				<dt class="m-settings__item type-label">フィルター</dt>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="all">全て</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="1">1章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="2">2章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="3">3章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="4">4章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="5">5章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="6">6章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="7">7章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="8">8章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="9">9章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="10">10章</dd>
-				<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="11">11章</dd>
-			</dl>
-			<dl class="m-settings__list type-autoplay">
-				<dt class="m-settings__item type-label">連続再生</dt>
-				<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="true">on</dd>
-				<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="false">off</dd>
-			</dl>
-		</div>
-	</div>
-	
-	<div class="m-songs">
-		<div class="m-songs__inner m-content">
-			<div class="m-songs__list">
-				<div class="m-songs__item" v-for="item in items" v-bind:songID="item.songID" v-bind:state="item.state">
-					<figure class="m-songs__cover">
-						<img v-bind:src="'./resources/img/' + item.discogsID + '.jpg'" v-bind:alt="item.title">
-					</figure>
-					<div class="m-songs__meta">
-						<h3 class="title u-mb-0">
-							<span class="button" v-on:click="onClickPlay" v-bind:songID="item.songID" v-bind:youtubeID="item.youtubeID">再生</span>
-							<span class="song">{{item.title}}</span>
-							<span class="leader">{{item.leader}}</span>
-						</h3>
-						<p class="album">{{item.album}}, {{item.year}}</p>
-						<ul class="m-songs__links m-grid">
-							<li>Links:</li>
-							<li><a target="_blank" v-bind:href="item.discogsURL">discogs</a></li>
-							<li><a target="_blank" v-bind:href="'https://www.youtube.com/watch?v=' + item.youtubeID">youtube</a></li>
-						</ul>
-						<blockquote>
-							<p v-html="item.quotation"></p>
-							<p class="u-text-right u-text-italic"><small>東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 第{{item.chapter}}章</small></p>
-						</blockquote>
+	<div class="p-home l-home">
+		
+		<div class="m-nav l-home__nav">
+			<div class="m-nav__inner">
+				<div class="m-title">
+					<div class="m-title__inner">
+						<h1 class="m-title__main">東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 使用楽曲一覧</h1>
+					</div>
+				</div>
+				<div class="m-settings">
+					<div class="m-settings__inner">
+						<dl class="m-settings__list type-sort">
+							<dt class="m-settings__item type-label">ソート</dt>
+							<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="songID">ページ</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="year">年</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="title">曲名</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickSort" sortby="leader">リーダー名</dd>
+						</dl>
+						<dl class="m-settings__list type-filter">
+							<dt class="m-settings__item type-label">フィルター</dt>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="all">全て</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="1">1章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="2">2章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="3">3章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="4">4章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="5">5章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="6">6章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="7">7章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="8">8章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="9">9章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="10">10章</dd>
+							<dd class="m-settings__item type-item" v-on:click="onClickFilter" filterby="11">11章</dd>
+						</dl>
+						<dl class="m-settings__list type-autoplay">
+							<dt class="m-settings__item type-label">連続再生</dt>
+							<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="true">on</dd>
+							<dd class="m-settings__item type-item" v-on:click="toggleAutoplay" isAutoplay="false">off</dd>
+						</dl>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
-	<div class="m-player">
-		<div id="js-frame" class="m-player__frame"></div>
-	</div>
+		</div><!-- m-nav -->
+		
+		<div class="m-songs l-home__songs">
+			<div class="m-songs__inner">
+				<div class="m-songs__list m-content">
+					<div class="m-songs__item" v-for="item in items" v-bind:songID="item.songID" v-bind:state="item.state">
+						<figure class="m-songs__cover">
+							<img v-bind:src="'./resources/img/' + item.discogsID + '.jpg'" v-bind:alt="item.title">
+						</figure>
+						<div class="m-songs__meta">
+							<h3 class="title u-mb-0">
+								<span class="button" v-on:click="onClickPlay" v-bind:songID="item.songID" v-bind:youtubeID="item.youtubeID">再生</span>
+								<span class="song">{{item.title}}</span>
+								<span class="leader">{{item.leader}}</span>
+							</h3>
+							<p class="album">{{item.album}}, {{item.year}}</p>
+							<ul class="m-songs__links m-grid">
+								<li>Links:</li>
+								<li><a target="_blank" v-bind:href="item.discogsURL">Discogs</a></li>
+								<li><a target="_blank" v-bind:href="'https://www.youtube.com/watch?v=' + item.youtubeID">YouTube</a></li>
+							</ul>
+							<blockquote>
+								<p v-html="item.quotation"></p>
+								<p class="u-text-right u-text-italic"><small>東京大学のアルバート・アイラー 東大ジャズ講義録・歴史編 第{{item.chapter}}章</small></p>
+							</blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- m-songs -->
+		
+		<div class="m-player l-home__player">
+			<div id="js-frame" class="m-player__frame"></div>
+		</div><!-- m-player -->
+		
+	</div><!-- p-home -->
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.1/vue.min.js"></script>

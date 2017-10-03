@@ -1,0 +1,17 @@
+/*========================================
+
+  nav
+
+========================================*/
+
+.m-nav{
+	& {
+		position: relative
+	}
+	&__inner {
+		position: fixed;
+		width: inherit;
+		height: 100%;
+		padding: 1em
+	}
+}
