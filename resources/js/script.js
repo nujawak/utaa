@@ -288,14 +288,28 @@
 		var params = {
 			videoId   : videoId,
 			playerVars: {
-				autoplay: 1,
+				autoplay   : 1,
+				playsinline: 1,
 			},
 			events: {
+				onReady      : app.music.methods.onYoutubeReady,
 				onStateChange: app.music.methods.onYoutubeStateChange,
 				onError      : app.music.methods.onYoutubeError,
 			}
 		};
 		app.music.player = new YT.Player('js-frame', params);
+	}
+	
+	
+	/**
+	 * youtube の準備が完了したら動画スタート
+	 * @param {object} event []
+	 * 
+	 * @link https://developers.google.com/youtube/iframe_api_reference#Events
+	 */
+	app.music.methods.onYoutubeReady = function( event ) {
+		console.log( 'onYoutubeReady(): ' + event.target.getVideoData().video_id );
+		event.target.playVideo();
 	}
 	
 	
