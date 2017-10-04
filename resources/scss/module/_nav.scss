@@ -13,9 +13,12 @@
 		width: inherit;
 		height: 100%;
 		padding: 1em;
+		overflow: scroll;
 		
 		@include mq_s() {
 			position: static;
+			padding-top: 3rem;
+			padding-bottom: 4rem;
 		};
 	}
 }

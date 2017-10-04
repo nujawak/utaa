@@ -22,11 +22,10 @@
 			z-index: 100;
 			top: 0;
 			left: -105%;
-			padding-top: 2rem;
 			width: 95vw;
 			height: 100vh;
 			background: #fff;
-			overflow: scroll;
+			overflow: visible;
 			transition: {
 				property       : left;
 				duration       : 0.6s;
@@ -66,6 +65,7 @@
 		
 		@include mq_s() {
 			width: 90vw;
+			padding-bottom: 4rem;
 		};
 	}
 	&__songs {
