@@ -13,6 +13,10 @@
 		@extend .m-grid;
 		margin-right: 0;
 		
+		@include mq_s() {
+			@extend .type-sp-row;
+		};
+
 		& + &{
 			margin-top: 2em;
 		}

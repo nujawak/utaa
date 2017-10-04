@@ -165,6 +165,21 @@
 	
 	
 	/**
+	 * ハンバーガーメニューの切り替え
+	 * 
+	 */
+	app.Vue.methods.toggleHamburger = function() {
+		var target = document.getElementsByClassName('m-nav')[0];
+		
+		if ( target.classList.contains('type-open') ) {
+			target.classList.remove('type-open');
+		} else {
+			target.classList.add('type-open');
+		}
+	}
+	
+	
+	/**
 	 * プレイボタンのクリックイベント
 	 * 
 	 */

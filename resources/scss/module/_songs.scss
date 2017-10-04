@@ -17,7 +17,9 @@
 		padding: 1em;
 	}
 	&__list{
-		
+		@include mq_s() {
+			padding: 0;
+		};
 	}
 	&__item{
 		& {

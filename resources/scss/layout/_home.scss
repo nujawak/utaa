@@ -14,10 +14,67 @@
 		align-content  : center;
 	}
 	&__nav {
-		width: 25%
+		position: relative;
+		width: 25%;
+		
+		@include mq_s() {
+			position: fixed;
+			z-index: 100;
+			top: 0;
+			left: -105%;
+			padding-top: 2rem;
+			width: 95vw;
+			height: 100vh;
+			background: #fff;
+			overflow: scroll;
+			transition: {
+				property       : left;
+				duration       : 0.6s;
+				timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+				delay          : 0s;
+			}
+			box-shadow: 0 0 10px rgba(#333, 0.5);
+			
+			&.type-open{
+				left: 0;
+			}
+		};
+	}
+	&__aboutContent{
+		position: fixed;
+		z-index: 20;
+		top: 0;
+		left: -105%;
+		width: 25vw;
+		height: 100vh;
+		padding: 1em 1.5em;
+		text-align: justify;
+		background: #fff;
+		transition: {
+			property       : left;
+			duration       : 0.6s;
+			timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+			delay          : 0s;
+		}
+		box-shadow: 0 0 10px rgba(#333, 0.5);
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
+		
+		&.type-open{
+			left: 0;
+		}
+		
+		@include mq_s() {
+			width: 90vw;
+		};
 	}
 	&__songs {
-		width: 75%
+		width: 75%;
+		
+		@include mq_s() {
+			width: 100%;
+			margin-top: 3rem;
+		};
 	}
 	&__player {
 		position: fixed;

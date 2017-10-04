@@ -6,12 +6,16 @@
 
 .m-nav{
 	& {
-		position: relative
+		
 	}
 	&__inner {
 		position: fixed;
 		width: inherit;
 		height: 100%;
-		padding: 1em
+		padding: 1em;
+		
+		@include mq_s() {
+			position: static;
+		};
 	}
 }
