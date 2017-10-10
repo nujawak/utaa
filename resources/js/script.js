@@ -12,6 +12,20 @@
 	app.music.methods  = {};
 	app.music._songs   = [];
 	app.music.player   = {};
+	app.music.titles   = [
+		'', 
+		'十二音平均律→バークリー・メソッド→MIDIを経由する近・現代商業音楽史',
+		'ジャズにおいてモダンとは何か？',
+		'モダンとプレ・モダン',
+		'1950年代のアメリカと、ジャズ・モダニズムの結晶化',
+		'1959 〜 1962年におけるジャズの変化 (1) ',
+		'1959 〜 1962年におけるジャズの変化 (2) ',
+		'フリー・ジャズとは何からのフリーだったのか？',
+		'1965 〜 1975年のマイルズ・デイヴィス (1)  コーダル・モーダルとフアンク',
+		'1965 〜 1975年のマイルス・デイヴィス (2)  電化と磁化',
+		'MIDIとモダニズムの終焉',
+		'前期テスト'
+	];
 	
 	// defaults
 	app.music.autoplay   = true;
@@ -43,6 +57,7 @@
 				item.discogsURL = 'https://www.discogs.com/' + discogsSlug;
 				item.state      = 'stop';
 				item.songID     = index;
+				item.chapterTitle = app.music.titles[item.chapter];
 				return item;
 			});
 		};
