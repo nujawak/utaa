@@ -63,6 +63,8 @@
 		};
 		request.open('GET', path, true);
 		request.send();
+		
+		document.getElementsByClassName('m-songs__list m-content')[0].classList.add('type-active');
 	};
 	
 	

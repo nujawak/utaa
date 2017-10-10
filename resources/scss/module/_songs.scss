@@ -17,6 +17,11 @@
 		padding: 1em;
 	}
 	&__list{
+		opacity: 0;
+		&.type-active {
+			opacity: 1;
+		}
+		
 		@include mq_s() {
 			padding: 0;
 		};
