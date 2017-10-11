@@ -11,63 +11,6 @@
 	&__inner{
 		padding: 1.4em 0;
 	}
-	&__hamburger{
-		display: none;
-		
-		@include mq_s() {
-			display: block;
-			position: fixed;
-			top: 1.5rem;
-			left: 1.5rem;
-			font-size: 2.5rem;
-			line-height: 1;
-			padding: 0 0 0 3rem;
-			cursor: pointer;
-			
-			&:before{
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				margin: auto 0;
-				width: 2.5rem;
-				height: 2px;
-				background: #333;
-			}
-			&:after{
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				margin: auto 0;
-				width: 2.5rem;
-				height: 1.8rem;
-				background: transparent;
-				border-top: 2px solid #333;
-				border-bottom: 2px solid #333;
-				transform-origin: center;
-				transition: {
-					property       : all;
-					duration       : 0.5s;
-					timing-function: ease-in-out;
-					delay          : 0s;
-				}
-			}
-		};
-		.type-open &{
-			&:after{
-				width: 1.2rem;
-				height: 1.2rem;
-				border-top: 2px solid transparent;
-				border-left: 2px solid #333;
-				transform: rotate(-315deg);
-			}
-		}
-	}
 	&__main{
 		margin: 0;
 		font-size: 1.1em;

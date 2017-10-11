@@ -5,6 +5,13 @@
 ========================================*/
 
 .l-home {
+	$z-index: (
+		nav      : 100,
+		hamburger: 200,
+		about    : 300,
+		player   : -1,
+	);
+	
 	& {
 		display: flex;
 		flex-direction : row;
@@ -19,7 +26,7 @@
 		
 		@include mq_s() {
 			position: fixed;
-			z-index: 100;
+			z-index: map-get($z-index, nav);
 			top: 0;
 			left: -105%;
 			width: 95vw;
@@ -34,14 +41,80 @@
 			}
 			box-shadow: 0 0 10px rgba(#333, 0.5);
 			
-			&.type-open{
+			.type-nav-open &{
 				left: 0;
 			}
 		};
 	}
-	&__aboutContent{
+	&__songs {
+		width: 75%;
+		
+		@include mq_s() {
+			width: 100%;
+			margin-top: 3rem;
+		};
+	}
+	&__hamburger{
+		display: none;
+		
+		@include mq_s() {
+			display: block;
+			position: fixed;
+			z-index: map-get($z-index, hamburger);
+			top: 1.5rem;
+			left: 1.5rem;
+			font-size: 2.5rem;
+			line-height: 1;
+			padding: 0 0 0 3rem;
+			cursor: pointer;
+			
+			&:before{
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto 0;
+				width: 2.5rem;
+				height: 2px;
+				background: #333;
+			}
+			&:after{
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				margin: auto 0;
+				width: 2.5rem;
+				height: 1.8rem;
+				background: transparent;
+				border-top: 2px solid #333;
+				border-bottom: 2px solid #333;
+				transform-origin: center;
+				transition: {
+					property       : all;
+					duration       : 0.5s;
+					timing-function: ease-in-out;
+					delay          : 0s;
+				}
+			}
+		};
+		.type-nav-open &{
+			&:after{
+				width: 1.2rem;
+				height: 1.2rem;
+				border-top: 2px solid transparent;
+				border-left: 2px solid #333;
+				transform: rotate(-315deg);
+			}
+		}
+	}
+	&__about{
 		position: fixed;
-		z-index: 20;
+		z-index: map-get($z-index, about);
 		top: 0;
 		left: -105%;
 		width: 25vw;
@@ -70,17 +143,9 @@
 			padding-bottom: 4rem;
 		};
 	}
-	&__songs {
-		width: 75%;
-		
-		@include mq_s() {
-			width: 100%;
-			margin-top: 3rem;
-		};
-	}
 	&__player {
 		position: fixed;
-		z-index: -1;
+		z-index: map-get($z-index, player);
 		top: 0;
 		left: 0;
 		width: 100vw;

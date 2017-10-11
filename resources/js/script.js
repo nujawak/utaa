@@ -168,7 +168,7 @@
 	 * 
 	 */
 	app.Vue.methods.toggleAboutContent = function( trigger ) {
-		var target = document.getElementById('js-about-content');
+		var target = document.getElementById('js-about');
 		
 		switch ( trigger ){
 			case 'open':
@@ -186,12 +186,12 @@
 	 * 
 	 */
 	app.Vue.methods.toggleHamburger = function() {
-		var target = document.getElementsByClassName('m-nav')[0];
+		var target = document.getElementsByClassName('p-home l-home')[0];
 		
-		if ( target.classList.contains('type-open') ) {
-			target.classList.remove('type-open');
+		if ( target.classList.contains('type-nav-open') ) {
+			target.classList.remove('type-nav-open');
 		} else {
-			target.classList.add('type-open');
+			target.classList.add('type-nav-open');
 		}
 	}
 	
