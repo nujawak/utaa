@@ -18,10 +18,19 @@
 	}
 	&__list{
 		opacity: 0;
-		&.type-active {
+		&.type-active { // load done
 			opacity: 1;
 		}
-		
+		&.type-active:empty{
+			&:before{
+				content: 'not found.';
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+				font-size: 1.4em;
+				line-height: calc(100vh - 2em);
+			}
+		}
 		@include mq_s() {
 			padding: 0;
 		};

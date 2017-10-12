@@ -7,8 +7,10 @@
 	// 
 	app.Vue.el         = '#js-vue';
 	app.Vue.methods    = {};
+	app.Vue.watch      = {};
 	app.Vue.data       = {};
 	app.Vue.data.items = [];
+	app.Vue.data.onChangeSearch = '';
 	app.music.methods  = {};
 	app.music._songs   = [];
 	app.music.player   = {};
@@ -144,6 +146,9 @@
 		})
 		// フィルターした後にソートも適用
 		app.Vue.methods.sort(app.Vue.data.items, app.music.sortby);
+		
+		// reset search
+		app.Vue.data.onChangeSearch = '';
 	}
 	
 	
@@ -160,6 +165,44 @@
 		// ターゲットにセット
 		event.currentTarget.classList.add('type-active');
 		app.music.autoplay = ('true' == event.currentTarget.getAttribute('isAutoplay'));
+	}
+	
+	
+	/**
+	 * キーワード検索。
+	 * input の change に反応。
+	 * leader, title, album が検索対象。
+	 * フィルターとの併用はなし。検索実行時にフィルターを 'all' に設定。
+	 * (watch だと他のクリックイベントでも呼ばれる？ click イベント時に app.Vue.data.onChangeSearch を変更した時など呼ばれる)
+	 * 
+	 * @param {string} val [ユーザーが入力したテキスト]
+	 * 
+	 * @link https://qiita.com/ykob/items/6e4d0b07bed57881a2bd
+	 * @link https://siongui.github.io/2017/02/03/vuejs-input-change-event/
+	 * @link https://jp.vuejs.org/v2/examples/firebase.html
+	 * @link https://qiita.com/growsic/items/fb57552053cf90f0fc31
+	 */
+	app.Vue.watch.onChangeSearch = function( val ) {
+		// only input event
+		if ( 'input' != event.type )
+			return;
+		
+		// search
+		var escape  = val.replace(/[&'`"<>]/g, '');
+		var regexp  = new RegExp(escape, 'i');
+		var matches = app.music._songs.filter(function( item ) {
+			if ( item.leader.match(regexp) || item.title.match(regexp) || item.album.match(regexp))
+				return item;
+		});
+		// sort after search
+		app.Vue.methods.sort(matches, app.music.sortby);
+		
+		// reset filter
+		if ( 'all' != app.music.filterby ) {
+			document.querySelector('.type-active[filterby]').classList.remove('type-active');
+			document.querySelector('[filterby]').classList.add('type-active');
+			app.music.filterby = 'all';
+		}
 	}
 	
 	
