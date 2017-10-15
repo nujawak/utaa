@@ -10,7 +10,6 @@
 	app.Vue.watch      = {};
 	app.Vue.data       = {};
 	app.Vue.data.items = [];
-	app.Vue.data.onChangeSearch = '';
 	app.music.methods  = {};
 	app.music._songs   = [];
 	app.music.player   = {};
@@ -94,7 +93,7 @@
 	 * 
 	 * @link https://jp.vuejs.org/v2/guide/events.html
 	 */
-	app.Vue.methods.onClickSort = function (){
+	app.Vue.methods.onClickSort = function ( event ){
 		// update
 		app.music.sortby = event.currentTarget.getAttribute('sortby');
 		
@@ -115,7 +114,7 @@
 	 * 
 	 * @link https://jp.vuejs.org/v2/guide/events.html
 	 */
-	app.Vue.methods.onClickFilter = function(){
+	app.Vue.methods.onClickFilter = function( event ){
 		// update
 		app.music.filterby = event.currentTarget.getAttribute('filterby');
 		
@@ -148,7 +147,7 @@
 		app.Vue.methods.sort(app.Vue.data.items, app.music.sortby);
 		
 		// reset search
-		app.Vue.data.onChangeSearch = '';
+		document.getElementById('js-searchby').value = '';
 	}
 	
 	
@@ -156,7 +155,7 @@
 	 * autoplay の設定を切り替え
 	 * 
 	 */
-	app.Vue.methods.toggleAutoplay = function(){
+	app.Vue.methods.toggleAutoplay = function( event ){
 		// 他をリセット
 		var buttons = document.querySelectorAll('.type-autoplay .type-active');
 		Object.keys(buttons).forEach(function (key) {
@@ -173,22 +172,21 @@
 	 * input の change に反応。
 	 * leader, title, album が検索対象。
 	 * フィルターとの併用はなし。検索実行時にフィルターを 'all' に設定。
-	 * (watch だと他のクリックイベントでも呼ばれる？ click イベント時に app.Vue.data.onChangeSearch を変更した時など呼ばれる)
 	 * 
-	 * @param {string} val [ユーザーが入力したテキスト]
+	 * @param {obj} event []
 	 * 
 	 * @link https://qiita.com/ykob/items/6e4d0b07bed57881a2bd
 	 * @link https://siongui.github.io/2017/02/03/vuejs-input-change-event/
 	 * @link https://jp.vuejs.org/v2/examples/firebase.html
 	 * @link https://qiita.com/growsic/items/fb57552053cf90f0fc31
 	 */
-	app.Vue.watch.onChangeSearch = function( val ) {
+	app.Vue.methods.onChangeSearch = function( event ) {
 		// only input event
 		if ( 'input' != event.type )
 			return;
 		
 		// search
-		var escape  = val.replace(/[&'`"<>]/g, '');
+		var escape  = event.target.value.replace(/[&'`"<>]/g, '');
 		var regexp  = new RegExp(escape, 'i');
 		var matches = app.music._songs.filter(function( item ) {
 			if ( item.leader.match(regexp) || item.title.match(regexp) || item.album.match(regexp))
@@ -243,7 +241,7 @@
 	 * プレイボタンのクリックイベント
 	 * 
 	 */
-	app.Vue.methods.onClickPlay = function() {
+	app.Vue.methods.onClickPlay = function( event ) {
 		var thisSongID  = event.currentTarget.getAttribute('songID');
 		
 		if ( thisSongID == app.music.nowplaying.songID ) {
@@ -258,7 +256,7 @@
 					break;
 			}
 		} else {
-			app.music.methods.start();
+			app.music.methods.start( event );
 		}
 	}
 	
@@ -267,7 +265,7 @@
 	 * 動画スタート
 	 * クリックイベントで実行
 	 */
-	app.music.methods.start = function() {
+	app.music.methods.start = function( event ) {
 		app.music.methods.setNowplaying(event.currentTarget.getAttribute('songID'), 'play');
 		app.music.methods.createYoutube(event.currentTarget.getAttribute('youtubeID'));
 	}

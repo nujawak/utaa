@@ -56,7 +56,7 @@
 						<dl class="m-settings__list type-search">
 							<dt class="m-settings__item type-label">検索</dt>
 							<dd class="m-settings__item type-item u-mr-0">
-								<input class="m-settings__searchby u-mb-10" type="text" name="searchby" placeholder="Keywords..." v-model="onChangeSearch">
+								<input class="m-settings__searchby u-mb-10" type="text" name="searchby" placeholder="Keywords..." v-on:input="onChangeSearch" id="js-searchby">
 								<p style="color: #777;"><small>対象は曲名、アルバム名、リーダー名です。フィルターとの併用は不可です。</small></p>
 							</dd>
 						</dl>
