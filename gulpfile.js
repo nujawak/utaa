@@ -4,6 +4,10 @@ var gulp         = require('gulp');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var uglify   = require('gulp-uglify');
+var rename   = require('gulp-rename');
+var plumber  = require('gulp-plumber');
+var jsonminify = require('gulp-jsonminify');
 
 /**
  * sass settings
@@ -53,16 +57,44 @@ gulp.task('sass', function(){
 		.pipe( gulp.dest(params.sass.dest) );
 });
 
+
+/**
+ * 
+ */
+params.js = {
+	src : 'resources/js/script.js',
+	dest: 'resources/js'
+}
+gulp.task('js', function(){
+	gulp.src( params.js.src )
+	.pipe(plumber())
+	.pipe(uglify())
+	.pipe(rename({extname: '.min.js'}))
+	.pipe(gulp.dest( params.js.dest  ));
+});
+
+/**
+ * 
+ */
+gulp.task('minify', function () {
+	gulp.src( 'resources/js/songs.json' )
+	.pipe(jsonminify())
+	.pipe(rename({extname: '.min.json'}))
+	.pipe(gulp.dest( 'resources/js' ));
+});
+
+
 /**
  * watch task
  * 
  */
 gulp.task('watch', function () {
 	gulp.watch(params.sass.src, ['sass']);
+	gulp.watch(params.js.src, ['js']);
 });
 
 /**
  * default task
  * 
  */
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'minify']);

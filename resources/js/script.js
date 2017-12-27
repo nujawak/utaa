@@ -48,7 +48,7 @@
 	 * @link https://jp.vuejs.org/v2/guide/instance.html#ライフサイクルダイアグラム
 	 */
 	app.Vue.created = function() {
-		var path       = 'resources/js/songs.json';
+		var path       = 'resources/js/songs.min.json';
 		var request    = new XMLHttpRequest();
 		request.onload = function() {
 			// data bind
