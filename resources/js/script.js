@@ -65,7 +65,7 @@
 		request.open('GET', path, true);
 		request.send();
 		
-		document.getElementsByClassName('m-songs__list m-content')[0].classList.add('type-active');
+		document.getElementsByClassName('m-songs__inner')[0].classList.add('type-active');
 	};
 	
 	

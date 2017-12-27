@@ -15,12 +15,12 @@
 	}
 	&__inner{
 		padding: 1em;
-	}
-	&__list{
 		opacity: 0;
 		&.type-active { // load done
 			opacity: 1;
 		}
+	}
+	&__list{
 		&.type-active:empty{
 			&:before{
 				content: 'not found.';
@@ -202,5 +202,49 @@
 			bottom: -0.5em;
 			right: -0.8em;
 		}
+	}
+}
+
+/**
+ * vue transition
+ * @link https://jp.vuejs.org/v2/guide/transitions.html
+ */
+.v-song-item{
+	&-enter{
+		opacity: 0;
+		transform: translateX(50px);
+		transition: {
+			property       : transform, opacity;
+			duration       : 0.6s;
+			timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+		}
+	}
+	&-enter-to{
+		opacity: 1;
+		transform: translateX(0);
+	}
+	&-leave{
+		opacity: 1;
+		transform: translateX(0);
+		transition: {
+			property       : transform, opacity;
+			duration       : 0.6s;
+			timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+		}
+	}
+	&-leave-to{
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	&-move{
+		transition: {
+			property       : transform;
+			duration       : 0.6s;
+			timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+			delay          : 0s;
+		}
+	}
+	&-appear{
+		background: red;
 	}
 }

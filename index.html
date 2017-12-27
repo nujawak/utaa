@@ -73,8 +73,8 @@
 		
 		<div class="m-songs l-home__songs">
 			<div class="m-songs__inner">
-				<div class="m-songs__list m-content">
-					<div class="m-songs__item" v-for="item in items" v-bind:songID="item.songID" v-bind:state="item.state">
+				<transition-group tag="div" name="v-song-item" appear appear-class="v-song-item-appear"class="m-songs__list m-content">
+					<div class="m-songs__item" v-for="item in items" v-bind:songID="item.songID" v-bind:state="item.state" v-bind:key="item.songID">
 						<figure class="m-songs__cover">
 							<img v-bind:src="'./resources/img/' + item.discogsID + '.jpg'" v-bind:alt="item.title">
 						</figure>
@@ -93,7 +93,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</transition-group>
 			</div>
 		</div><!-- m-songs -->
 		
